@@ -1,35 +1,44 @@
 import React from 'react';
-import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
+import { View, Text, Button, FlatList, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 
 import { CATEGORIES } from '../data/dummy-data';
-
-const renderGridItem = itemData  => {
-    return (
-        <View style={styles.gridItem}>
-            <Text>{itemData.item.title}</Text>
-        </View>
-    )
-};
+import Colors from '../constans/Color';
 
 const CategoriesScreen = props => {
 
+    const renderGridItem = itemData  => {
+        return (
+            <TouchableOpacity 
+                style={styles.gridItem}
+                onPress={() => {
+                    props.navigation.navigate({ routeName: 'CategoryMeals'});
+            }}>
+                <View >
+                    <Text>{itemData.item.title}</Text>
+                </View>
+            </TouchableOpacity>
+        );
+    };
      //console.log(props);
 
     return(
-        <FlatList 
-            keyExtractor={(item, index) => item.id} 
-            data={CATEGORIES} 
-            renderItem={renderGridItem} 
-            numColumns={2} 
-        />
-
-        // <View style={styles.screen}>
-        //     <Text>The Categories Screen!</Text>
-        //     <Button title="Go to  Meals"  onPress={() => {
-        //         props.navigation.navigate({routeName: 'CategoryMeals'})  // or similar to (props.navigation.navigate('CategoryMeals');)
-        //     }} />
-        // </View>
+            <FlatList 
+                keyExtractor={(item, index) => item.id} 
+                data={CATEGORIES} 
+                renderItem={renderGridItem} 
+                numColumns={2} 
+            />
+        
     );
+};
+
+
+CategoriesScreen.navigationOptions = {
+    headerTitle: 'MealCategories',
+    headerStyle: {
+        backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
+    },
+    headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor
 };
 
 const styles = StyleSheet.create({
