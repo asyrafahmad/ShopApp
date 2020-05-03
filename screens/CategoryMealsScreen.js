@@ -1,10 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
-const CategoryMealsScreen = props => {
+import { CATEGORIES } from '../data/dummy-data';
+
+const CategoryMealScreen = props => {
+
+    const catId = props.navigation.getParam('categoryId');
+
+    const selectedCategory = CATEGORIES.find(cat => cat.id === catId);
+
     return(
         <View style={styles.screen}>
             <Text>The Categories Meal Screensss!</Text>
+            <Text>{selectedCategory.title}</Text>
             <Button title="Go to  Meals"  onPress={() => {
                 props.navigation.navigate('MealDetail');
             }} />
@@ -23,4 +31,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CategoryMealsScreen;
+export default CategoryMealScreen;
