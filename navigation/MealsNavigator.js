@@ -1,7 +1,9 @@
+import React from 'react';
 import { createAppContainer} from 'react-navigation';
 import { createStackNavigator} from 'react-navigation-stack';
 import { createBottomTabNavigator} from 'react-navigation-tabs';
 import { Platform } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 
 import CategoriesScreen from '../screens/CategoriesScreen';
@@ -23,7 +25,7 @@ const MealsNavigator = createStackNavigator(
     { 
         // mode: 'modal',                  // for IOS animation similar to Android (modal transition)
 
-        initialRouteName: 'Categories',
+        // initialRouteName: 'Categories',
         defaultNavigationOptions : {
         headerStyle: {
             backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
@@ -34,8 +36,33 @@ const MealsNavigator = createStackNavigator(
 );
 
 const MealsFavTabNavigator = createBottomTabNavigator({
-    Meals: MealsNavigator,
-    Favorites: FavoritesScreen
+    Meals: { 
+        screen: MealsNavigator, 
+        navigationOptions : {
+            tabBarLabel: 'Meals',
+            tabBarIcon: (tabInfo) => {
+                return (
+                    <Ionicons name='ios-restaurant'  size={25} color={tabInfo.tintColor} />
+                );
+            }
+        }
+    },
+    Favorites: { 
+        screen: FavoritesScreen, 
+        navigationOptions : {
+            tabBarLabel: 'Favorites',
+            tabBarIcon: (tabInfo) => {
+                return (
+                    <Ionicons name='ios-star'  size={25} color={tabInfo.tintColor} />
+                );
+            }
+        }
+    }
+
+},{
+    tabBarOptions: {
+        activeTintColor: Colors.accentColor
+    }
 });
 
 
