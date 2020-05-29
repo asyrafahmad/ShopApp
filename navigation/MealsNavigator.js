@@ -2,7 +2,7 @@ import React from 'react';
 import { createAppContainer} from 'react-navigation';
 import { createStackNavigator} from 'react-navigation-stack';
 import { createBottomTabNavigator} from 'react-navigation-tabs';
-import { Platform } from 'react-native';
+import { Text, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { createDrawerNavigator } from 'react-navigation-drawer';
@@ -56,31 +56,34 @@ const tabScreenConfig = {
     Meals: { 
         screen: MealsNavigator, 
         navigationOptions : {
-            tabBarLabel: 'Meals',
             tabBarIcon: (tabInfo) => {
                 return (
                     <Ionicons 
-                        name='ios-restaurant'  
+                        name="ios-restaurant"  
                         size={25} 
                         color={tabInfo.tintColor} 
                     />
                 );
-            }
+            },
+            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'open-sans-bold'}}>Meals</Text> : 'Meals',
+            tabBarColor: Colors.primaryColor,
         },
-        tabBarColor: Colors.primaryColor
     },
     Favorites: { 
         screen: FavNavigator , 
         navigationOptions : {
-            tabBarLabel: 'Favorites',
             tabBarIcon: (tabInfo) => {
                 return (
-                    <Ionicons name='ios-star'  size={25} color={tabInfo.tintColor} />
+                    <Ionicons 
+                        name="ios-star"  
+                        size={25} 
+                        color={tabInfo.tintColor} 
+                    />
                 );
-            }
-            
+            },
+            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'open-sans-bold'}}>Favorites</Text> : 'Favorites',
+            tabBarColor: Colors.accentColor 
         },
-        tabBarColor: Colors.accentColor 
     }
 
 };
@@ -96,6 +99,9 @@ const MealsFavTabNavigator =
         })  
         : createBottomTabNavigator(tabScreenConfig,{
             tabBarOptions: {
+                labelStyle: {
+                    fontFamily: 'open-sans'
+                },
                 activeTintColor: Colors.accentColor
             }
         });

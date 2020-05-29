@@ -23,7 +23,9 @@ FavoritesScreen.navigationOptions = (navData) => {
                 <Item 
                     title="Menu" 
                     iconName="ios-menu"
-                    onPress={() => {navData.navigation.toggleDrawer()}}                 // openDrawer OR toggleDrawer
+                    onPress={() => {
+                        navData.navigation.toggleDrawer();
+                    }}                 // openDrawer OR toggleDrawer
                 />
             </HeaderButtons>
         )

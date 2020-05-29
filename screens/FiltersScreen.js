@@ -13,7 +13,7 @@ const FiltersScreen = props => {
 };
 
 
-FiltersScreen.navigationOptions = navData => {
+FiltersScreen.navigationOptions = (navData) => {
 
     return {
         headerTitle: 'Filter Meals',
@@ -22,11 +22,29 @@ FiltersScreen.navigationOptions = navData => {
                 <Item 
                     title="Menu" 
                     iconName="ios-menu"
-                    onPress={() => {navData.navigation.toggleDrawer()}}                 // openDrawer OR toggleDrawer
+                    onPress={() => {
+                        navData.navigation.toggleDrawer();
+                    }}                 // openDrawer OR toggleDrawer
                 />
             </HeaderButtons>
         )
     };
+
+
+    // return {
+    //     header : (navigation) => ({
+    //         title: 'Filter Meals',
+    //         left: 
+    //             <HeaderButtons HeaderButtonComponent={HeaderButton}>
+    //                 <Item 
+    //                     title="Menu" 
+    //                     onPress={() => {
+    //                         navData.navigation.toggleDrawer();
+    //                     }}                 // openDrawer OR toggleDrawer
+    //                 />
+    //             </HeaderButtons>
+    //     })
+    // };
 };
 
 const styles = StyleSheet.create({
