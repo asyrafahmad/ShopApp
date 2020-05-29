@@ -22,7 +22,7 @@ FavoritesScreen.navigationOptions = (navData) => {
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item 
                     title="Menu" 
-                    iconNam='ios-menu' 
+                    iconName="ios-menu"
                     onPress={() => {navData.navigation.toggleDrawer()}}                 // openDrawer OR toggleDrawer
                 />
             </HeaderButtons>

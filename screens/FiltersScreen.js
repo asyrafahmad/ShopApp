@@ -13,7 +13,7 @@ const FiltersScreen = props => {
 };
 
 
-FiltersScreen.navigationOptions = (navData) => {
+FiltersScreen.navigationOptions = navData => {
 
     return {
         headerTitle: 'Filter Meals',
@@ -21,7 +21,7 @@ FiltersScreen.navigationOptions = (navData) => {
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item 
                     title="Menu" 
-                    iconNam='ios-menu' 
+                    iconName="ios-menu"
                     onPress={() => {navData.navigation.toggleDrawer()}}                 // openDrawer OR toggleDrawer
                 />
             </HeaderButtons>
